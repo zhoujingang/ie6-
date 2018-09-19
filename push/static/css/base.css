@@ -1,0 +1,11 @@
+/* 通用样式 */
+@charset "utf-8";
+* {box-sizing: border-box}
+body,h1,h2,h3,h4,h5,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,button,input,textarea,th,td { margin:0; padding:0;}
+body,button,input,select,textarea { font:14px "Microsoft YaHei", arial,sans-serif;}
+body { overflow-x:hidden;} /*background:#fff !important;*/
+address,cite,dfn,em,var,i { font-style:normal;}
+html,body {cursor:default;-webkit-user-select: none}
+ul,ol,li { list-style:none;}
+.clearfix:after {content:""; display:block; clear:both;}
+.clearfix {zoom:1;}

@@ -1,0 +1,1 @@
+访问地址URL后面加上   theme=3&id=50&type=1

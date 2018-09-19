@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://image.kuwo.cn/mpage/html5/2018/static/css/base.css">
+    <script src="https://s1j.kuwo.cn/kuwolive/jquery-1.7.1.min.js"></script>
+    <style>
+        body{
+            /* background: #000; */
+            overflow: hidden;
+        }
+        .fl_l{
+            float: left;
+        }
+        .fl_r{
+            float: right;
+        }
+        img{
+            border: none;
+        }
+        .index999{
+            position: relative;
+            z-index: 999;
+        }
+        .hover:hover{
+            opacity: 0.8;
+            filter: alpha(opacity=80)
+        }
+        /* .opacity{    
+            opacity:0.6;
+            filter:alpha(opacity=60);
+        } */
+        .model{
+            position: relative;
+            margin: 0 auto;
+            width: 360px;
+            height: 218px;
+            *width: 326px;
+            *height: 192px;
+            padding: 13px 17px;
+            display: none;
+            overflow: hidden;
+        }
+        .model1{
+            background-image: url("https://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_bg.png");
+            background-position: 5px -10px;
+            border: 1px solid #e2e2e2;
+            *width: 324px;
+            *height: 190px;
+        }
+        .model2{
+            background: #fff;
+        }
+
+        .tit{
+            overflow: hidden;
+            text-align: right;
+        }
+        .tit img{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .tit .close {
+            position: relative;
+            z-index: 99999;
+        }
+        .content{
+            margin-top: 15px;
+        }
+        .con_left{
+            float: left;
+            position:relative;
+            width: 158px;
+            height: 100px;
+        }
+        .con_left .left_inn{
+            position: absolute;
+            top: 0;
+            left: 0px;
+            z-index: 1000;
+            width: 157px;
+            height: 100px;
+        }
+        .con_left .cover{
+            position: absolute;
+            left: 0px;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .con_left .circle{
+            position: absolute;
+            top: 0px;
+            left: 32px;
+            z-index: 999;
+            transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out; /* Firefox 4 */
+            -webkit-transition: all 1s ease-in-out; /* Safari 和 Chrome */
+            -o-transition: all 1s ease-in-out; /* Opera */
+        }
+        .con_right{
+            float: right;
+        }
+        .con_right .theme{
+            width: 151px;
+            /* height: 48px; */
+            margin-top: 21px;
+            line-height: 24px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #333;
+        }
+        .con_right .text{
+            margin-top: 4px;
+            font-size: 12px;
+        }
+        .con_right .text span, .con_right .text img{
+            display: inline-block;
+            vertical-align: middle;
+            color: #666;
+        }
+        .btns{
+            text-align: center;
+        }
+        .btns a{
+            display: inline-block;
+            margin-top: 10px;
+            width: 130px;
+            height: 36px;
+        }
+        .btns img{
+            border: none;
+        }
+        .model1 .hint, .model1_2 .hint{
+            margin-right: 18px;
+        }
+        .model1 .posterOut,.model1_2 .posterOut{
+            position: relative;
+            top: 0px;
+            left: 31px;
+            width: 97px;
+            height: 97px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .poster{
+            position: relative;
+        }
+        /*模板二*/
+        .model1_2{
+            background-image: url("http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_bg2.png");
+            /* background-position: 5px -10px; */
+        }
+        .model1_2 .theme{
+            color: #fff;
+        }
+        /*模板三*/
+        .model2{
+            /*background: #000*/
+            border: 1px solid #e2e2e2;
+            *width: 324px;
+            *height: 190px;
+        }
+        .model2 .content{
+            margin-top: 25px;
+            margin-left: 6px;
+        }
+        .model2 .theme{
+            margin-top: 5px;
+            margin-bottom: 16px;
+        }
+        .model2 .divider{
+            margin: 0 10px 0 12px;
+        }
+        .model2 .poster{
+            position: absolute;
+            top: 14px;
+            left: 12px;
+            width: 119px;
+            height: 119px;
+            z-index: 99;
+            background: #000;
+            animation: rotate 9s linear infinite;
+            /* overflow: hidden; */
+            -moz-animation: rotate 9s linear infinite; /* Firefox */
+            -webkit-animation: rotate 9s linear infinite; /* Safari and Chrome */
+            -o-animation: rotate 9s linear infinite; /* Opera */
+        }
+        .model2 .posterCircle{
+            position: absolute;
+            top: -11px;
+            left: -14px;
+            z-index: 100;
+        }
+        .model2 .dashboard{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 101;
+        }
+        .model2 .note{
+            position: absolute;
+            top: -60px;
+            left: -20px;
+            z-index: 101;
+        }
+        .model2 .mplay{
+            position: absolute;
+            top: 53px;
+            left: 53px;
+            z-index: 99999;
+        }
+        
+        /*模板四*/
+        .model3{
+            background-image: url("http://image.kuwo.cn/mpage/html5/2018/static/img/template3/pic_bg.png");
+        }
+        .model .hint3{
+            margin-right: 15px;
+        }
+        .model3 .theme{
+            color: #fff;
+            margin-top: 35px;
+            margin-bottom: 24px;
+            width: 156px;
+        }
+        .model3 .con_left3{
+            float: left;
+            position: relative;
+            width: 140px;
+        }
+        .model3 .left_inn3{
+            position: absolute;
+            top: 12px;
+            left: 8px;
+            width: 140px;
+            height: 139px;
+            z-index: 99;
+            overflow: hidden;
+        }
+        .model3 .poster{
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            _top: 7px;
+            width: 128px;
+            height: 128px;   
+            animation: rotate 9s linear infinite;
+            -moz-animation: rotate 9s linear infinite; /* Firefox */
+            -webkit-animation: rotate 9s linear infinite; /* Safari and Chrome */
+            -o-animation: rotate 9s linear infinite; /* Opera */
+        }
+        .model3 .posterCircle{
+            position: absolute;
+            top: -15px;
+            _top: -13px;
+            left: -14px;
+            _left: -15px;
+            z-index: 100
+        }
+        .model3 .circle3{
+            position: absolute;
+            top: 10px;
+            _top: 11px;
+            left: 10px;
+        }
+        .model3 .random1{
+            margin-right: 25px;
+        }
+        
+        /* 模板五 */
+        .modelOut{
+            position: relative;
+            width: 360px;
+            height: 218px;
+            margin: 0 auto;
+            display: none;
+            overflow: hidden;
+        }
+        .bgImg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* width: 100%;
+            height: 100%; */
+        }
+        .model5{
+            *width: 346px;
+            *height: 204px;
+            padding: 7px 7px;
+        }
+        .model5 .themeOut{
+            position: relative;
+            left: 120px;
+            /* display: none; */
+            opacity:0;
+            filter:alpha(opacity=00);
+            color: #fff;
+            margin: 45px 0 0 28px;
+            _margin: 35px 0 0 28px;
+            width: 220px;
+            line-height: 23px;
+            font-size: 22px;
+            /* font-weight: 700; */
+        }
+        .model5 .border{
+            display: block;
+            margin-top: 8px;
+            width: 91px;
+            height: 2px;
+            font-size: 0px;
+            background: #ffeb00;
+            overflow: hidden;
+        }
+        .model5 .hint_img{
+            position: absolute;
+            left: 35px;
+            bottom: 37px;
+        }
+        .model5 .play_circle{
+            position: absolute;
+            right: 15px;
+            bottom: 12px;
+            width: 68px;
+            height: 68px;
+        }
+        .model5 .play_circle div {
+            position: absolute;
+            text-align: center;
+            width: 68px;
+            height: 68px;
+            
+        }
+        .play_circle .play3{
+            top: 50%;
+        }
+        .play_circle .play2{
+            top: 53%;
+        }
+        .play_circle .play1{
+            top: 59%;
+        }
+        .play_circle .play3, .play_circle .play2{
+            animation: playFade 2.5s linear infinite;
+            -moz-animation: playFade 2.5s linear infinite; /* Firefox */
+            -webkit-animation: playFade 2.5s linear infinite; /* Safari and Chrome */
+            -o-animation: playFade 2.5s linear infinite; /* Opera */
+        }
+        .play_circle img{
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            top: -50%;
+        }
+        .model5 .right2{
+            position: absolute;
+            top: 0;
+            right: -148px;
+            z-index: 100;
+        }
+        .model5 .model_img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .model5 .right1{
+            position: absolute;
+            top: 0;
+            right: -211px;
+            z-index: 99;
+        }
+        /* 模板六 */
+        .model6 .tit {
+            position: relative;
+            z-index: 99;
+            overflow: visible;
+        }
+        .model6 .fl_l{
+            position: relative;
+            left: -125px;
+        }
+        .model6 .themeOut{
+            position: relative;
+            left: -175px;
+            color: #fff;
+            margin-top: 30px;
+            width: 195px;
+            line-height: 23px;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+        .model6 .play_img{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .model6 .hint_img{
+            position: absolute;
+            left: 17px;
+            bottom: 21px;
+        }
+        .model6 .model_img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .oldModel{
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            display: none;
+            width: 300px;
+            height: 200px;
+        }
+        .oldModel .bgImg{
+            width: 100%;
+            height: 100%;
+        }
+        .oldModel .titBg{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .oldModel .tit{
+            margin: 0 7px 0 5px;
+            height: 26px;
+            vertical-align: middle;
+        }
+        .oldModel a{
+            display: inline-block;
+            vertical-align: middle
+        }
+        .oldModel .hint{
+            display: inline-block;
+            _margin-top: 2px;
+            margin-right: 20px;
+        }
+        .oldModel .oldBtn{
+            position: absolute;
+            width: 170px;
+            height: 35px;
+            bottom: 15px;
+            left: 64px;
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes playFade {
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--模板一-->
+    <div class="model model1" name="1">
+        <div class="tit clearfix sss">
+                <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/common/pic_logo.png" alt="">
+                <a href="javascript:;" class="close">
+                    <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_x.png" alt="">
+                </a>
+        </div>
+        <div class="content clearfix">
+            <div class="con_left">
+                <div class="left_inn">
+                    <img class="cover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_cover.png" alt="">
+                    <div class="posterOut">
+                        <img class="poster" src="" alt="">
+                    </div>
+                    <img class="circle" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_vinyl.png" alt="">
+                </div>
+            </div>
+            <div class="con_right">
+                <p class="theme"></p>
+                <p class="text">
+                    <span class="mathNum"></span>
+                    <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_secondary.png" alt="">
+                </p>
+            </div>
+        </div>
+        <div class="btns clearfix">
+            <a href="javascript:;" class="hint hover"><img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_left.png" alt=""></a>
+            <a href="javascript:;" class="play hover"><img class="" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_right.png" alt=""></a>
+        </div>
+    </div>
+    <!--模板二-->
+    <div class="model model1_2" name="2">
+        <div class="tit clearfix sss">
+            <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_logo.png" alt="">
+            <a href="javascript:;" class="close hover">
+                <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_x.png" alt="">
+            </a>
+        </div>
+        <div class="content clearfix">
+            <div class="con_left">
+                <div class="left_inn">
+                    <img class="cover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_cover.png" alt="">
+                    <div class="posterOut">
+                        <img class="poster" src="" alt="">
+                    </div>
+                    <img class="circle" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_vinyl.png" alt="">
+                </div>
+            </div>
+            <div class="con_right">
+                <p class="theme"></p>
+                <p class="text">
+                    <span class="mathNum"></span>
+                    <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/pic_secondary.png" alt="">
+                </p>
+            </div>
+        </div>
+        <div class="btns clearfix">
+            <a href="javascript:;" class="hint hover"><img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_left2.png" alt=""></a>
+            <a href="javascript:;" class="play hover"><img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_right.png" alt=""></a>
+        </div>
+    </div>
+    <!--模板三-->
+    <div class="model model2" name="3">
+        <div class="tit clearfix index999">
+            <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/pic_logo.png" alt="">
+            <a href="javascript:;" class="hint"><img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/btn_hint.png" alt=""></a>
+            
+            <img class="divider" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/pic_divider.png" alt="">
+            <a href="javascript:;" class="close">
+                <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/btn_x.png" alt="">
+            </a>
+        </div>
+        <div class="content clearfix">
+            <div class="con_left">
+                <div class="posterOut">
+                    <img class="poster" src="" alt="">
+                </div>  
+                <img class="posterCircle" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/poster_out.png" alt="">
+                <img class="dashboard" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/pic_dashboard.png" alt="">
+                <img  class="note" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/note.gif" alt="">
+                <a href="javascript:;" class="play">
+                   <img class="mplay" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/btn_mplay.png" alt=""> 
+                </a>
+            </div>
+            <div class="con_right index999">
+                <div>
+                    <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template2/pic_recommend.png" alt="">
+                </div>
+                <p class="theme"></p>
+                <div class="clearfix">
+                    <a href="javascript:;" class="play"><img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template1/btn_right.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--模板四-->
+    <div class="model model3" name="4">
+        <div class="tit clearfix">
+            <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/pic_logo.png" alt="">
+            <a href="javascript:;" class="hint"><img class="hint3 hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/btn_hint.png" alt=""></a>
+            <a href="javascript:;" class="close">
+                <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/icon_x.png" alt="">
+            </a>
+        </div>
+        <div class="content clearfix">
+            <div class="con_left3">
+                <div class="left_inn3">
+                    <img class="poster" src="" alt="">        
+                    <img class="posterCircle" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/pic_viral.png" alt="">
+                    <a href="javascript:;" class="play">
+                       <img class="circle3 index999" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/pic_circle.png" alt=""> 
+                    </a>
+                </div>
+            </div>
+            <div class="con_right">
+                <p class="theme"></p>
+                <p class="text">
+                    <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/icon_heart.png" alt="">
+                    <span class="random1" style="color: #b9b3b3"></span>
+                    <a href="javascript:;" class="play"><img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template3/icon_triangle.png" alt=""></a>          
+                    <span class="random2" style="color: #b9b3b3"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模板五 -->
+    <div class="modelOut">
+        <img src="" class="bgImg" alt="">
+        <div class="model model5" name="5">
+                <img class="model_img" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template6/model.png" alt="">
+            <div class="tit clearfix sss index999">
+                <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/logo.png" alt="">
+                <a href="javascript:;" class="close">
+                    <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/icon_x.png" alt="">
+                </a>
+            </div>
+            <div class="content clearfix">
+                <p class="themeOut">
+                    <span class="theme"></span>
+                    <span class="border"></span>
+                </p>
+            </div>
+            <a href="javascript:;" class="hint">
+                <img class="hint_img" src="http://image.kuwo.cn/mpage/html5/2018/static/img/common/hint.png" alt="">
+            </a>
+            <div class="play_circle index999">
+                <div class="play3">
+                    <img class="" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/floor2.png" alt="">
+                </div>
+                <div class="play2">
+                    <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/floor1.png" alt=""> 
+                </div>
+            <div class="play1">
+                <a href="javascript:;" class="play">
+                    <img class="" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/play.png" alt=""> 
+                </a>
+            </div>
+            </div>
+            <img class="right1" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/right2.png" alt="">
+            <img class="right2" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/right1.png" alt="">
+        </div>
+    </div>
+    
+    <!-- 模板六 -->
+    <div class="modelOut">
+        <img src="" class="bgImg"  alt="">
+        <div class="model model6" name="6">
+            <img class="model_img" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template6/model.png" alt="">
+            <div class="tit clearfix sss index999">
+                <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template6/logo.png" alt="">
+                <a href="javascript:;" class="close">
+                    <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template5/icon_x.png" alt="">
+                </a>
+            </div>
+            <div class="content clearfix index999">
+                <p class="themeOut">
+                    <span class="theme"></span>  
+                    <span class="border"></span>
+                </p>
+            </div>
+            <a href="javascript:;" class="hint">
+                <img class="hint_img" src="http://image.kuwo.cn/mpage/html5/2018/static/img/common/hint.png" alt="">
+            </a>
+            <a href="javascript:;" class="play">
+                <img class="play_img hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/template6/play.png" alt="">
+            </a>   
+        </div>
+    </div>
+    <!-- 老模板 -->
+    <div class="oldModel">
+        <img src="" class="bgImg" alt="">
+        <img src="http://image.kuwo.cn/mpage/html5/2018/static/img/old/tit_bg.png" class="titBg" alt="">
+        <div class="tit clearfix index999">
+            <img class="fl_l" src="http://image.kuwo.cn/mpage/html5/2018/static/img/old/logo.png" alt="">
+            <a href="javascript:;" class="hint"><img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/old/hint.png" alt=""></a>
+            <a href="javascript:;" class="close">
+                <img class="hover" src="http://image.kuwo.cn/mpage/html5/2018/static/img/old/close.png" alt="">
+            </a>
+        </div>
+        <a href="javascript:;" class="play">
+            <img src="" class="oldBtn hover" alt="">
+        </a>
+    </div>
+    <!-- <div class="test box" style="width: 100px; height: 100px;background: red">21231</div> -->
+    <img class="loadImg" onload="getImg(this)" src="" style="display: none" alt="">
+    <img class="oldImg" onload="getoldImg(this)" src="" style="display: none" alt="">
+    <img class="oldBtn" onload="getbtnImg(this)" src="" style="display: none" alt="">
+    <!--[if IE 6]>
+    <script src="http://image.kuwo.cn/mpage/html5/2018/static/js/DD_belatedPNG.js"></script>
+    <![endif]-->
+    <script src="http://image.kuwo.cn/mpage/html5/2018/static/js/jquery.rotate.min.js"></script>
+    <script>
+        function getImg() {
+            window.show = true
+        }
+        function getoldImg () {
+            window.show1 = true 
+        }
+        function getbtnImg(params) {
+            window.show2 = true
+        }
+        function getQueryVariable(variable) // 获取url参数
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        
+        //每隔三位小数加逗号
+        function add_comma_toThousands(num) {
+            var num = (num || 0).toString();
+            var result = '';
+            while (num.length > 3) {
+                result = ',' + num.slice(-3) + result;
+                num = num.slice(0, num.length - 3);
+            }
+            if (num) { result = num + result; }
+            return result;
+        }
+        function IEVersion() {
+            var userAgent = navigator.userAgent;
+            var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+            var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+            if(isIE) {
+                var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp["$1"]);
+                if(fIEVersion == 7) {
+                    return 7;
+                } else if(fIEVersion == 8) {
+                    return 8;
+                } else if(fIEVersion == 9) {
+                    return 9;
+                } else if(fIEVersion == 10) {
+                    return 10;
+                } else {
+                    return 6;//IE版本<=7
+                }
+            } else if(isEdge) {
+                return 'edge';//edge
+            } else if(isIE11) {
+                return 11; //IE11
+            }else{
+                return 12;//不是ie浏览器
+            }
+        }
+        function callClient(call) {
+            try {
+                return window.external.callkwmusic(call);
+            } catch (e) {
+                return "";
+            }
+        }
+        var VERSION = IEVersion()
+        var str = getQueryVariable('theme');
+        var id = getQueryVariable('id');
+        var type = getQueryVariable('type');
+        var current; // 当前展示的模板
+        $(function(){
+            requestInfo()
+            function requestInfo () {
+                var num = (500000 + Math.floor(Math.random()*(1500000 - 500000 + 1)));
+                var random1 = (100 + Math.floor(Math.random()*(500 - 100 + 1))) + ' 万';
+                var random2 = (10 + Math.floor(Math.random()*(50 - 10 + 1))) + ' 万';
+                // jQuery.support.cors = true;
+                $.ajax({
+                    url: 'http://wapi.kuwo.cn/api/pc/push/htmlInfo?',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    data: {
+                        'id': id
+                    },
+                    success: function (res) {
+                        if (res.code != 200) {
+                            return false
+                        }
+                        var data = res.data;
+                        if (type == 1) {
+                            $('.loadImg').attr('src',data.push_master_img);
+                            var time = setInterval(function() {
+                                if (window.show) {
+                                    clearInterval(time);
+                                    $('.poster,.poster2,.poster3,.testimg').attr('src',data.push_master_img);
+                                    $('.theme').text(data.push_title);
+                                    $('.mathNum').text(add_comma_toThousands(num));
+                                    $('.random1').text(random1);
+                                    $('.random2').text(random2);
+                                    $('.bgImg').attr('src', data.push_master_img);
+                                    imgCut($('.model1 .poster'));
+                                    imgCut($('.model1_2 .poster'));
+                                    imgCut($('.bgImg').eq(0));
+                                    imgCut($('.bgImg').eq(1));
+                                    init();
+                                }
+                            },200)
+                        }
+                        if (type == 2) {
+                            $('.oldImg').attr('src', data.bg_img);
+                            $('.oldBtn').attr('src', data.btn_img);
+                            $('.oldModel .bgImg').attr('src', data.bg_img);
+                            imgCut($('.oldModel .bgImg'));
+                            var time1 = setInterval(function () {
+                                if (window.show1 && window.show2) {
+                                    clearInterval(time1);                              
+                                    callClient('showwindow');
+                                    
+                                }
+                            }, 200)
+                        }
+                    },
+                    error: function (a, b, c) {
+                    }
+                })
+            }
+            
+            var ver = IEVersion();
+            show();
+            function  show () {
+                var models = $('.model');// 模板集合
+                for (var i = 0; i < models.length; i++) {
+                    if (models.eq(i).attr('name') == str && type == 1) {
+                        current = i
+                        models.eq(i).show() // addClass ie8以下不兼容
+                        models.eq(i).parents('.modelOut').show()
+                    }
+                    if (type == 2) {
+                        $('.oldModel').show()
+                    }
+                }
+            }
+            
+            function init() {
+                callClient('showwindow');
+                animate(); 
+                if (str == 1 || str == 2) {
+                    setInterval(function() {
+                        runItLeft($('.left_inn'))
+                        showIt($('.left_inn'))
+                        runItRight($('.circle'))
+                        showIt($('.circle'))
+                    }, 6000)  
+                }
+                if (str == 5) {
+                    setInterval(function () {
+                        $('.model5 .themeOut').css({
+                            left: '120px',
+                            opacity: '0',
+                            filter: 'alpha(opacity = 00)'
+                        });
+                        $('.right1').css({right: '-211px'});
+                        $('.right2').css({ right: '-148px' });
+                        ani_model_5(); 
+                    },6000)
+                } 
+                if (str == 6) {
+                    setInterval(function () {
+                        $('.model6 .themeOut').css({
+                            left: '-175px'
+                        });
+                        $('.model6 .fl_l').css({ left: '-125px' });
+                        ani_model_6();
+                    }, 6000)
+                }           
+            }
+            function imgCut(img) {
+                var parh = img.parent().height(), parw = img.parent().width(), selfh = img.height(), selfw = img.width();
+                var parScale = parw / parh;
+                var scale = selfw / selfh;
+                if (scale >= parScale) {
+                    img.css({
+                        height: '100%',
+                        left: '-' + (parh * scale - parw) / 2 + 'px'
+                    })
+                } else {
+                    img.css({
+                        width: '100%',
+                        top: '-' + (parw / scale - parh) / 2 + 'px'
+                    })
+                }
+            }
+            if (VERSION == 6) {
+                DD_belatedPNG.fix('* , img'); // ie6透明图片处理
+            }    
+            function animate () {
+                if (VERSION <= 9) {
+                    var angle = 0;
+                    if (str == 3 || str == 4) {
+                        setInterval(function(){
+                            angle += 0.8;
+                            $('.model2 .poster, .model3 .poster').rotate(angle);
+                        }, 10);
+                    }                               
+                }
+                if (str == 5) {
+                    ani_model_5(); 
+                }
+                if (str == 6) {
+                    ani_model_6()
+                }
+                runItLeft($('.left_inn'))
+                showIt($('.left_inn'))
+                runItRight($('.circle'))
+                showIt($('.circle'))
+            }
+            // 模板一 和模板二动画
+            function runItLeft(dom) {
+                // if (VERSION != 6) {
+                dom.animate({ left: '-25px' }, 1000);
+                var time = setTimeout(function () {
+                    dom.animate({ left: '0px' }, 1000);
+                }, 2000)
+                // }
+            }
+            function runItRight(dom) {
+                if (VERSION <= 9) {
+                    dom.animate({ left: '72px' }, 1000);
+                } else {
+                    dom.css({
+                        left: '72px',
+                        transform: 'rotate(45deg)'
+                    })
+                }
+                var time = setTimeout(function () {
+                    if (VERSION <= 9) {
+                        dom.animate({ left: '33px' }, 1000);
+                    } else {
+                        dom.css({
+                            left: '32px',
+                            transform: 'rotate(0deg)',
+                            '-ms-transform': 'rotate(0deg)'
+                        })
+                    }
+                }, 2000)
+            }
+
+            function showIt(dom) {
+                var n = dom.queue("fx");
+            }
+            function ani_model_5() {
+                setTimeout(function () {
+                    $('.model5 .themeOut').animate({
+                        left: '0px',
+                        opacity: '1',
+                        filter: 'alpha(opacity=100)'
+                    }, 600)
+                }, 400);
+                $('.right1').animate({right: '0'}, 700);
+                $('.right2').animate({right: '0'}, 600);
+            }
+            function ani_model_6() {
+                $('.model6 .fl_l').animate({left: '0'}, 700);
+                $('.model6 .themeOut').animate({left: '0'}, 600);
+            }
+            $('.close').on('click',function () {
+                // alert(1);
+                callClient('closewindow');
+            });
+            $('.hint').on('click',function () {
+                // alert(2);
+                callClient('setshowinterval?days=7');
+            });
+            $('.play').on('click',function () {
+                // alert(3);
+                callClient('click?');
+            });
+        })
+    </script>
+<script type="text/javascript">
+</script>
+</body>
+</html>
